@@ -1,9 +1,18 @@
 Algorithms::Application.routes.draw do
+  get "privacy" => "site#privacy"
+  get "terms" => "site#terms"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  resource :sessions, only: [:new, :create, :destroy]
+
+  get "login" => "sessions#new"
+  post "login" => "sessions#create"
+  delete "logout" => "sessions#destroy"
+
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'site#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -39,7 +48,7 @@ Algorithms::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
