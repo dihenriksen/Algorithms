@@ -1,5 +1,26 @@
 require 'spec_helper'
+require 'json'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+	subject(:user) { Fabricate(:user) }
+
+	it "prints the subject data as json" do
+		puts subject.to_json
+	end
+
+  it "encrypts a password" do
+  	fish = BCrypt::Engine.hash_secret('123', subject.salt)
+  	puts subject.email
+  	expect(subject.salt).not_to be_nil
+  	expect(subject.fish).to eq(fish)
+  end
+
+  it "authenticates a user" do
+  	authuser = User.authenticate(subject.email, '123')
+  	unauthuser = User.authenticate(subject.email, '')
+
+  	puts subject.email
+  	expect(authuser).to eq(subject)
+  	expect(unauthuser).to be_nil
+  end
 end

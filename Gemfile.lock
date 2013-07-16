@@ -70,6 +70,8 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fabrication (2.7.2)
+    ffaker (1.16.2)
     ffi (1.9.0)
     fssm (0.2.10)
     hike (1.2.3)
@@ -187,6 +189,8 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   compass-rails!
   database_cleaner
+  fabrication
+  ffaker
   jasmine
   jbuilder (~> 1.2)
   jquery-rails
