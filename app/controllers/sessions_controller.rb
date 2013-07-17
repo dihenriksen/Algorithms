@@ -1,16 +1,29 @@
 class SessionsController < ApplicationController
+
   def new
   end
 
   def create
-  	user = User.authenticate(params[:email], params[:password])
+    if params[:password].blank?
+      user = User.find_by(email: params[:email])
 
-  	if user
-  		session[:user_id] = user.id
-  		redirect_to root_url
-  	else
-  		render :new
-  	end
+    	if user
+        user.code = SecureRandom.urlsafe_base64
+        user.expires_at = Time.now + 4.hours
+        user.save
+    	end
+
+      render :new
+    else
+      user = User.authenticate(params[:email], params[:password])
+
+      if user
+        session[:user_id] = user.id
+        redirect_to root_url
+      else
+        render :new
+      end
+    end
   end
 
   def destroy

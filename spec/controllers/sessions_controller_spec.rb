@@ -1,13 +1,36 @@
 require 'spec_helper'
 
 describe SessionsController do
-  subject(:user) { Fabricate(:user) }
+  let!(:email) { 'sam@stone.com' }
+  let!(:pw) { '123xyz' }
+
+  subject!(:user) { Fabricate(
+    :user,
+    email: email,
+    password: pw,
+    password_confirmation: pw
+    )}
 
   describe "POST #create" do
-    it 'logs in an authenticated user and redirects to site#index'
+    it 'logs in an authenticated user and redirects to site#index' do
+      post('create', email: email, password: pw)
 
-    it 'redisplays the login form for authentication failures'
+      expect(response).to redirect_to(root_url)
+    end
 
-    it 'sets code and expires_at for a password reset request'
+    it 'redisplays the login form for authentication failures' do
+      post('create', email: email, password: '...')
+
+      expect(response).to render_template('new')
+    end
+
+    it 'sets code and expires_at for a password reset request' do
+      post('create', email: email, password: '')
+
+      pwresetuser = User.first
+
+      expect(pwresetuser.code).not_to be_nil
+      expect(pwresetuser.expires_at).not_to be_nil
+    end
   end
 end
