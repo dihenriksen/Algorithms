@@ -1,7 +1,8 @@
 class PasswordController < ApplicationController
   def edit
-  	# @code = params[:code]
-  	@user = User.new
+  	# find the user with the passed in code.
+  	# then display the reset password form
+  	@user = User.find_by(code: params[:code])
   end
 
   def update

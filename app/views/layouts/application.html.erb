@@ -26,5 +26,7 @@
 
 
     <%= javascript_include_tag "application" %>
+    <%# Insert the flash messages partial BELOW the noty scripts %>
+    <%= render partial: 'layouts/messages' %>
   </body>
 </html>
