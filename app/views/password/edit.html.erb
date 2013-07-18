@@ -3,5 +3,20 @@
 		<h2></h2>
 		<p></p>
 	</div>
-	<div class='large-8 columns'></div>
+	<div class='large-8 columns'>
+		<h1>Choose a new password</h1>
+		<%= form_for @user, html: { autocomplete: :off } do |f| %>
+			<p>
+				<%= f.label :password %>
+				<%= f.text_field :password %>
+			</p>
+			<p>
+				<%= f.label :password_confirmation %>
+				<%= f.text_field :password_confirmation %>
+			<p>
+				<%= f.submit 'Save password' %>
+			</p>
+			<% end %>
+		</p>
+	</div>
 </div>

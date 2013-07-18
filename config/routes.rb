@@ -7,7 +7,9 @@ Algorithms::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   resource :sessions, only: [ :new, :create, :destroy ]
-  resource :password, only: [ :edit, :update ]
+  resource :password, only: [ :update ]
+
+  get "reset/:code" => "password#edit"
 
   get "login" => "sessions#new"
   post "login" => "sessions#create"
