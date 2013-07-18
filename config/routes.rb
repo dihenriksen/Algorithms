@@ -1,11 +1,13 @@
 Algorithms::Application.routes.draw do
+
   get "privacy" => "site#privacy"
   get "terms" => "site#terms"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  resource :sessions, only: [:new, :create, :destroy]
+  resource :sessions, only: [ :new, :create, :destroy ]
+  resource :password, only: [ :edit, :update ]
 
   get "login" => "sessions#new"
   post "login" => "sessions#create"
