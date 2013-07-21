@@ -11,6 +11,9 @@ class SessionsController < ApplicationController
         user.code = SecureRandom.urlsafe_base64
         user.expires_at = Time.now + 4.hours
         user.save
+
+        # Send the password reset email with the coded link
+        PasswordMailer.reset_email(user).deliver
     	end
 
       render :new
@@ -20,6 +23,7 @@ class SessionsController < ApplicationController
       if user
         session[:user_id] = user.id
         redirect_to root_url
+        redirect_to root_url, notice: "You've successfully logged in!"
       else
         render :new
       end

@@ -32,5 +32,12 @@ describe SessionsController do
       expect(pwresetuser.code).not_to be_nil
       expect(pwresetuser.expires_at).not_to be_nil
     end
+
+    it 'sends a password reset email' do
+      # PasswordMailer.password_reset_email(user)
+      #
+      # expect(ActionMailer::Base:deliveries.last.to).to eq(@user.email)
+    end
+
   end
 end
