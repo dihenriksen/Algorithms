@@ -25,7 +25,7 @@ function bubblesort(array) {
 	// console.log(array_for_display);
 	// $('.bubblesort').append(array_for_display);
 
-	new_array_element = $('p').first().clone().html(arr);
+	new_array_element = $('p').first().clone().html('[' + arr + ']');
 	$('.bubblesort').append(new_array_element);
 
 	}
@@ -36,6 +36,7 @@ function bubblesort(array) {
 
 function mergesort(array) {
 	var arr = array.slice();
+	var new_array_element = $('p').first().clone().html('');
 
 	if (arr.length === 1 || arr.length === 0) {
 		return arr;
@@ -47,6 +48,9 @@ function mergesort(array) {
 		left = mergesort(left);
 		right = mergesort(right);
 
+		new_array_element = new_array_element.html('[' + left + '] [' + right + ']');
+		$('.mergesort').append(new_array_element);
+
 		return merge(left, right);
 	}
 
@@ -54,6 +58,7 @@ function mergesort(array) {
 
 function merge(left, right) {
 	var arr = [];
+	var new_array_element = $('p').first().clone().html('');
 
 	while (left.length && right.length) {
 		if (left[0] < right[0]) {
@@ -70,6 +75,9 @@ function merge(left, right) {
 	while(right.length) {
 		arr.push(right.shift());
 	}
+
+	new_array_element = new_array_element.html('[' + arr + ']');
+	$('.mergesort').append(new_array_element);
 
 	console.log('array:' + arr);
 	return arr;
