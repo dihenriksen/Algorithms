@@ -3,6 +3,7 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 function bubblesort(array) {
+	var arr = array.slice();
 	var swaps = 0;	// counts total number of swaps within the array
 	var sorted = false;
 	var new_array_element = $('p').first().clone().html('');
@@ -10,9 +11,9 @@ function bubblesort(array) {
 
 	while (!sorted) {
 		var for_testing_if_any_swaps = swaps;
-		for (i = 0; i < array.length; i++) {
-			if (array[i] > array[i+1]) {
-				swap(array, i, i+1);
+		for (i = 0; i < arr.length; i++) {
+			if (arr[i] > arr[i+1]) {
+				swap(arr, i, i+1);
 				swaps++;
 			}
 		}
@@ -24,29 +25,62 @@ function bubblesort(array) {
 	// console.log(array_for_display);
 	// $('.bubblesort').append(array_for_display);
 
-	new_array_element = $('p').first().clone().html(array);
+	new_array_element = $('p').first().clone().html(arr);
 	$('.bubblesort').append(new_array_element);
 
 	}
 
 	$('.bubblesort').append('<p>' + swaps + ' swaps</p>');
-	return array;
+	return arr;
 }
 
 function mergesort(array) {
-	if (array.length === 1) {
-		return array;
-	} else {
+	var arr = array.slice();
 
+	if (arr.length === 1 || arr.length === 0) {
+		return arr;
+	} else {
+		var mid = Math.floor(arr.length/2);
+		var left = arr.slice(0, mid);
+		var right = arr.slice(mid);
+
+		left = mergesort(left);
+		right = mergesort(right);
+
+		return merge(left, right);
 	}
+
 }
 
-function swap(array, x, y) {
+function merge(left, right) {
+	var arr = [];
+
+	while (left.length && right.length) {
+		if (left[0] < right[0]) {
+			arr.push(left.shift());
+		} else {
+			arr.push(right.shift());
+		}
+	}
+
+	while(left.length) {
+		arr.push(left.shift());
+	}
+
+	while(right.length) {
+		arr.push(right.shift());
+	}
+
+	console.log('array:' + arr);
+	return arr;
+}
+
+function swap(arr, x, y) {
 	// Swaps the positions of two elements in an array
-	var temp = array[x];
-	array[x] = array[y];
-	array[y] = temp;
-	return array;
+	var temp = arr[x];
+	arr[x] = arr[y];
+	arr[y] = temp;
+	return arr;
 }
 
 $(document).ready(function() {
@@ -54,7 +88,11 @@ $(document).ready(function() {
 	var test_array = [0, 3, 5, 2, 8, 7, 9, 4, 1, 6];
 
 	$('p').html('Start: ' + test_array);
-	array = bubblesort(test_array);
+	bubble_array = bubblesort(test_array);
+
+	console.log('test_array: ' + test_array);
+	merge_array = mergesort(test_array);
+	console.log('Done');
 
 });
 
