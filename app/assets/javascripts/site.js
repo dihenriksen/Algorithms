@@ -38,7 +38,7 @@ function mergesort(array) {
 	var arr = array.slice();
 	var new_array_element = $('p').first().clone().html('');
 
-	if (arr.length === 1 || arr.length === 0) {
+	if (arr.length === 1) {
 		return arr;
 	} else {
 		var mid = Math.floor(arr.length/2);
@@ -53,7 +53,39 @@ function mergesort(array) {
 
 		return merge(left, right);
 	}
+}
 
+function quicksort(array) {
+	var arr = array.slice();
+
+	if (arr.length === 1 || arr.length === 0) {
+		return arr;
+	} else {
+		var pivot = median([arr[0],arr[Math.floor(arr.length/2)],arr[arr.length - 1]]);
+		console.log('pivot:' + pivot);
+
+		var end_index = arr.length - 1;
+
+		for (i = 0; i < end_index; i++) {
+			if (i < arr.indexOf(pivot) && arr[i] > pivot) {
+				arr.push(arr.splice(i,1)[0]);
+				end_index--;
+				i--;
+			} else if (i > arr.indexOf(pivot) && arr[i] < pivot) {
+				arr.unshift(arr.splice(i,1)[0]);
+			}
+		}
+
+		console.log('left: ' + left);
+		console.log('right: ' + right);
+
+		var left = quicksort(arr.slice(0,arr.indexOf(pivot)));
+		var right = quicksort(arr.slice(arr.indexOf(pivot) + 1));
+
+		arr = left.concat([pivot]).concat(right);
+		console.log('arr: ' + arr);
+		return left.concat([pivot]).concat(right);
+	}
 }
 
 function merge(left, right) {
@@ -79,7 +111,6 @@ function merge(left, right) {
 	new_array_element = new_array_element.html('[' + arr + ']');
 	$('.mergesort').append(new_array_element);
 
-	console.log('array:' + arr);
 	return arr;
 }
 
@@ -91,15 +122,30 @@ function swap(arr, x, y) {
 	return arr;
 }
 
+function median(arr) {
+	// returns the median of an array of three numbers
+	if ((arr[0] < arr[1] && arr[0] > arr[2]) || (arr[0] > arr[1] && arr[0] < arr[2])) {
+		return arr[0];
+	} else if ((arr[1] < arr[0] && arr[1] > arr[2]) || (arr[1] > arr[0] && arr[1] < arr[2])) {
+		return arr[1];
+	} else {
+		return arr[2];
+	}
+}
+
+
+
 $(document).ready(function() {
 
 	var test_array = [0, 3, 5, 2, 8, 7, 9, 4, 1, 6];
 
-	$('p').html('Start: ' + test_array);
+	$('p').html('Start: [' + test_array + ']');
 	bubble_array = bubblesort(test_array);
 
-	console.log('test_array: ' + test_array);
 	merge_array = mergesort(test_array);
+
+	quicksort_array = quicksort(test_array);
+
 	console.log('Done');
 
 });
