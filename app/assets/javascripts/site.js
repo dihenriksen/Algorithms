@@ -57,6 +57,7 @@ function mergesort(array) {
 
 function quicksort(array) {
 	var arr = array.slice();
+	var new_array_element = $('p').first().clone().html('');
 
 	if (arr.length === 1 || arr.length === 0) {
 		return arr;
@@ -76,15 +77,18 @@ function quicksort(array) {
 			}
 		}
 
-		console.log('left: ' + left);
-		console.log('right: ' + right);
+		var left = arr.slice(0,arr.indexOf(pivot));
+		var right = arr.slice(arr.indexOf(pivot) + 1);
 
-		var left = quicksort(arr.slice(0,arr.indexOf(pivot)));
-		var right = quicksort(arr.slice(arr.indexOf(pivot) + 1));
+		new_array_element = new_array_element.html('[' + left + '] [' + pivot + '] [' + right + ']');
+		$('.quicksort').append(new_array_element);
 
-		arr = left.concat([pivot]).concat(right);
-		console.log('arr: ' + arr);
-		return left.concat([pivot]).concat(right);
+		left = quicksort(left);
+		right = quicksort(right);
+
+		var arr = left.concat([pivot]).concat(right);
+		$('.quicksort').append('<p>[' + arr + ']</p>');
+		return arr;
 	}
 }
 
