@@ -48,6 +48,8 @@ function mergesort(array) {
 		var left = arr.slice(0, mid);
 		var right = arr.slice(mid);
 
+		// Put steps into json data
+
 		left = mergesort(left);
 		right = mergesort(right);
 
@@ -65,7 +67,7 @@ function quicksort(array) {
 	if (arr.length === 1 || arr.length === 0) {
 		return arr;
 	} else {
-		var pivot = median([arr[0],arr[Math.floor(arr.length/2)],arr[arr.length - 1]]);
+		var pivot = choose_pivot([arr[0],arr[Math.floor(arr.length/2)],arr[arr.length - 1]]);
 		// console.log('pivot:' + pivot);
 
 		var end_index = arr.length;
@@ -130,7 +132,7 @@ function swap(arr, x, y) {
 	return arr;
 }
 
-function median(arr) {
+function choose_pivot(arr) {
 	// returns the median of an array of three numbers
 	if ((arr[0] < arr[1] && arr[0] > arr[2]) || (arr[0] > arr[1] && arr[0] < arr[2])) {
 		return arr[0];
