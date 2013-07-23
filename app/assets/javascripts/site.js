@@ -16,12 +16,13 @@ function bubblesort(array) {
 			if (arr[i] > arr[i+1]) {
 				swap(arr, i, i+1);
 				swaps++;
-				end_index--;
 			}
 		}
 		if (for_testing_if_any_swaps === swaps) {
 			sorted = true;
 		}
+
+		end_index--;
 
 	// array_for_display = new_array_element.html(array);
 	// console.log(array_for_display);
