@@ -137,18 +137,28 @@ function median(arr) {
 	}
 }
 
+function randomarray() {
+	var arr = [];
+	var length = Math.floor(Math.random() * 30);
+
+	for (i = 0; i < length; i++) {
+		arr[i] = Math.floor(Math.random() * 200 - 100);
+	}
+	console.log(arr);
+	return arr;
+}
 
 
 $(document).ready(function() {
 
-	var test_array = [0, 3, 5, 2, 8, 7, 9, 4, 1, 6];
+	var array = randomarray();
 
-	$('p').html('Start: [' + test_array + ']');
-	bubble_array = bubblesort(test_array);
+	$('p').html('Start: [' + array + ']');
+	bubble_array = bubblesort(array);
 
-	merge_array = mergesort(test_array);
+	merge_array = mergesort(array);
 
-	quicksort_array = quicksort(test_array);
+	quicksort_array = quicksort(array);
 
 	console.log('Done');
 
