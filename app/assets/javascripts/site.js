@@ -65,7 +65,7 @@ function quicksort(array) {
 		var pivot = median([arr[0],arr[Math.floor(arr.length/2)],arr[arr.length - 1]]);
 		console.log('pivot:' + pivot);
 
-		var end_index = arr.length - 1;
+		var end_index = arr.length;
 
 		for (i = 0; i < end_index; i++) {
 			if (i < arr.indexOf(pivot) && arr[i] > pivot) {
