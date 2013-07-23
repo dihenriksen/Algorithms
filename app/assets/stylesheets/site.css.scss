@@ -2,13 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/*/
 
+$margin: 20px;
 
 #random_array {
 	font-size: 20px;
 }
 
+#sort_button {
+	margin: $margin;
+}
+
+#generator {
+	margin: $margin;
+}
+
 @mixin alg-box {
-	margin: 20px;
+	margin: $margin;
 	border: 1px solid black;
 	border-radius: 5px;
 	width: 900px;
@@ -19,13 +28,13 @@
 	}
 }
 
-.mergesort {
+#mergesort {
 	@include alg-box;
 }
 
-.bubblesort {
+#bubblesort {
 	@include alg-box;}
 
-.quicksort {
+#quicksort {
 	@include alg-box;
 }
