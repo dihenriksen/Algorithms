@@ -60,6 +60,23 @@ function mergesort(array) {
 	}
 }
 
+function mergesort_natural(array) {
+	var arr = array.slice();
+	var new_array_element = $('p').first().clone().html('');
+	var naturalized = [];
+	var j = 0;
+
+	if (arr.length === 1) {
+		return arr;
+	} else {
+		for (i = 0; i < arr.length; i++) {
+			naturalized[j].push(arr.shift(i));
+			console.log(naturalized);
+			console.log(arr);
+		}
+	}
+}
+
 function quicksort(array) {
 	var arr = array.slice();
 	var new_array_element = $('p').first().clone().html('');
@@ -184,7 +201,12 @@ $(document).ready(function() {
 	$('#sort_button').click(function() {
 		sorts(array);
 		return false;
-});
+	});
+
+	test_array = [4,6,5,8,2,3,9,1,0,7]
+
+	console.log(test_array);
+	mergesort_natural(test_array);
 	console.log('Done');
 });
 
