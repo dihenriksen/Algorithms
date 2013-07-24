@@ -19,11 +19,11 @@ class UsersController < ApplicationController
   	@user = User.create user_params
 
   	if @user
-      user.code = SecureRandom.urlsafe_base64
-      user.expires_at = Time.now + 4.hours
-      user.save
+      @user.code = SecureRandom.urlsafe_base64
+      @user.expires_at = Time.now + 4.hours
+      @user.save
 
-      PasswordMailer.new_user_email(user).deliver
+      PasswordMailer.new_user_email(@user).deliver
   	else
   		render :new
   	end
