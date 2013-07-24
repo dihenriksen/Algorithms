@@ -24,6 +24,10 @@ $margin: 20px;
 	}
 }
 
+#mergesort_natural {
+	@include alg-box;
+}
+
 #mergesort {
 	@include alg-box;
 }

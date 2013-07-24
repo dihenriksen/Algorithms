@@ -15,6 +15,12 @@ Algorithms::Application.routes.draw do
   post "login" => "sessions#create"
   delete "logout" => "sessions#destroy"
   get "logout" => "sessions#destroy"
+  get "history" => "sessions#history"
+
+  get "visuals" => "site#visuals"
+  get "exploration" => "site#exploration"
+
+  get "new_user" => "users#new"
 
   resources :users
 

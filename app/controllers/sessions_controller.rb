@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def history
+  end
+
   def create
     if params[:password].blank?
       user = User.find_by(email: params[:email])

@@ -9,23 +9,18 @@ User.destroy_all
 
 User.create([
 	{
-		email: 'charles@chazga.com',
+		email: 'charles@chaz.com',
 		password: '123',
 		password_confirmation: '123'
 	},
 	{
-		email: 'baxter@rossga.com',
+		email: 'baxter@ross.com',
 		password: '123',
 		password_confirmation: '123'
 	},
 	{
-		email: 'tim@prestonga.com',
+		email: 'tim@preston.com',
 		password: '123',
 		password_confirmation: '123'
 	},
-	{
-		email: 'danhenriksen12@gmail.com',
-		password: '123',
-		password_confirmation: '123'
-	}
 	])

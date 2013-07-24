@@ -3,7 +3,7 @@
 <nav class='top-bar'>
 	<ul class='title-area'>
 		<li class='name'>
-			<h1><a href='#'>Algorithms</a></h1>
+			<h1><a href='/'>Algorithms</a></h1>
 		</li>
 		<li class='toggle-topbar menu-icon'><a href='#'><span>Menu</span></a></li>
 	</ul>
@@ -11,35 +11,36 @@
 	<section class='top-bar-section'>
 		<ul class='left'>
 			<li class='divider'></li>
-			<li class='active'><a href='#'>Home</a></li>
+			<li class='active'><a href='/'>Home</a></li>
 			<li class='divider'></li>
-			<li class='active'><a href="#">History</a></li>
+			<li class='active'><%= link_to "History", history_path %></li>
 			<li class='divider'></li>
-			<li class='active'><a href="#">Stunning Visuals</a></li>
+			<li class='active'><%= link_to "Stunning Visuals", visuals_path %></li>
 			<li class='divider'></li>
-			<li class='has-dropdown'><a href="#">Explore Algorithms</a>
+			<li class='has-dropdown'><%= link_to "Explore Algorithms", exploration_path %>
 				<ul class='dropdown'>
-					<li><a href="#">Bubble Sort</a></li>
-					<li><a href="#">Bubble Bounce Sort</a></li>
-					<li><a href="#">Merge Sort - Top Down</a></li>
-					<li><a href="#">Merge Sort - Natural</a></li>
-					<li><a href="#">Merge Sort - Bottom Up</a></li>
-					<li><a href="#">Quicksort</a></li>
-					<li><a href="#">Insertion Sort</a></li>
-					<li><a href="#">Selection Sort</a></li>
-					<li><a href="#">Shell Sort</a></li>
-					<li><a href="#">Heapsort - Binary</a></li>
-					<li><a href="#">Heapsort - Ternary</a></li>
-					<li><a href="#">Introsort</a></li>
-					<li><a href="#">Comb Sort</a></li>
-					<li><a href="#">Radix Sort</a></li>
-					<li><a href="#">Bucket Sort</a></li>
+					<li><%= link_to "Bubble Sort" %></li>
+					<li><%= link_to "Bubble Bounce Sort" %></li>
+					<li><%= link_to "Merge Sort - Top Down" %></li>
+					<li><%= link_to "Merge Sort - Natural" %></li>
+					<li><%= link_to "Merge Sort - Bottom Up" %></li>
+					<li><%= link_to "Quicksort" %></li>
+					<li><%= link_to "Insertion Sort" %></li>
+					<li><%= link_to "Selection Sort" %></li>
+					<li><%= link_to "Shell Sort" %></li>
+					<li><%= link_to "Heapsort - Binary" %></li>
+					<li><%= link_to "Heapsort - Ternary" %></li>
+					<li><%= link_to "Introsort" %></li>
+					<li><%= link_to "Comb sort" %></li>
+					<li><%= link_to "Radix Sort" %></li>
+					<li><%= link_to "Bucket Sort" %></li>
 				</ul>
 			</li>
 		</ul>
 
 		<ul class='right'>
-			<li><a href="#">Sign In</a></li>
+			<li><%= link_to "Sign In", login_path%></li>
+			<li><%= link_to "Register", new_user_path %></li>
 		</ul>
 	</section>
 

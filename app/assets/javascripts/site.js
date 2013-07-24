@@ -56,25 +56,41 @@ function mergesort(array) {
 		new_array_element = new_array_element.html('[' + left + '] [' + right + ']');
 		$('#mergesort').append(new_array_element);
 
-		return merge(left, right);
+		return merge(left, right, '#mergesort');
 	}
 }
 
 function mergesort_natural(array) {
-	var arr = array.slice();
-	var new_array_element = $('p').first().clone().html('');
-	var naturalized = [];
-	var j = 0;
-
-	if (arr.length === 1) {
-		return arr;
+	if (array.length === 1) {
+		return array;
 	} else {
-		for (i = 0; i < arr.length; i++) {
-			naturalized[j].push(arr.shift(i));
-			console.log(naturalized);
-			console.log(arr);
+		var arr = array.slice();
+		var new_array_element = $('p').first().clone().html('');
+		var naturalized = [[]];
+		console.log(naturalized);
+		var j = 0;
+		var current = 0;
+
+		// test_array = [4,6,5,8,2,3,9,1,0,7]
+
+		while (arr.length) {
+			current = arr[0];
+			naturalized[j].push(arr.shift());
+			if (arr[0] < current) {
+				j++;
+				naturalized[j] = [];
+			}
+		}
+		console.log(naturalized);
+
+		while (naturalized.length > 1) {
+			naturalized[0] = merge(naturalized[0], naturalized[1], '#mergesort_natural');
+			naturalized.splice(1,1);
+			console.log(naturalized[0]);
 		}
 	}
+	arr = naturalized[0];
+	return arr;
 }
 
 function quicksort(array) {
@@ -114,7 +130,7 @@ function quicksort(array) {
 	}
 }
 
-function merge(left, right) {
+function merge(left, right, calling_function) {
 	// merges two arrays, sorting as it goes
 	var arr = [];
 	var new_array_element = $('p').first().clone().html('');
@@ -136,7 +152,7 @@ function merge(left, right) {
 	}
 
 	new_array_element = new_array_element.html('[' + arr + ']');
-	$('#mergesort').append(new_array_element);
+	$(calling_function).append(new_array_element);
 
 	return arr;
 }
@@ -179,12 +195,15 @@ function sorts(array) {
 	$('#mergesort').append(start_tag);
 	$('#quicksort').children('p').remove();
 	$('#quicksort').append(start_tag);
+	$('#mergesort_natural').children('p').remove();
+	$('#mergesort_natural').append(start_tag);
 
 	$('p').html('Start: [' + array + ']');
 
 	bubble_array = bubblesort(array);
 	merge_array = mergesort(array);
 	quicksort_array = quicksort(array);
+	mergesort_natural_array = mergesort_natural(array);
 
 	return false;
 }
@@ -203,11 +222,11 @@ $(document).ready(function() {
 		return false;
 	});
 
-	test_array = [4,6,5,8,2,3,9,1,0,7]
+	// test_array = [4,6,5,8,2,3,9,1,0,7]
 
-	console.log(test_array);
-	mergesort_natural(test_array);
-	console.log('Done');
+	// console.log(test_array);
+	// mergesort_natural(test_array);
+	// console.log('Done');
 });
 
 

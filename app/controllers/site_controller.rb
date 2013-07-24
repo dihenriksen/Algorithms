@@ -1,7 +1,6 @@
 class SiteController < ApplicationController
 	# before_action :is_authenticated, only: [ :index ]
 
-
   def index
   end
 
@@ -10,4 +9,11 @@ class SiteController < ApplicationController
 
   def terms
   end
+
+  def visuals
+  end
+
+  def exploration
+  end
+
 end
