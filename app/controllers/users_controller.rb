@@ -24,6 +24,7 @@ class UsersController < ApplicationController
       @user.save
 
       PasswordMailer.new_user_email(@user).deliver
+      redirect_to root_url, notice: "An email has been sent to you to complete registration."
   	else
   		render :new
   	end
