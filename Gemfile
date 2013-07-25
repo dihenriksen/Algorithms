@@ -16,6 +16,7 @@ group :development, :test do
   gem 'jasmine'
   gem 'fabrication'
   gem 'ffaker'
+  gem 'mailcatcher'
 end
 
 gem 'sass-rails', '~> 4.0.0'

@@ -6,16 +6,16 @@ Algorithms::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  resource :sessions, only: [ :new, :create, :destroy ]
+  resource :session, only: [ :new, :create, :destroy ]
   resource :password, only: [ :update ]
 
   get "reset/:code" => "password#edit"
 
-  get "login" => "sessions#new"
-  post "login" => "sessions#create"
-  delete "logout" => "sessions#destroy"
-  get "logout" => "sessions#destroy"
-  get "history" => "sessions#history"
+  get "login" => "session#new"
+  post "login" => "session#create"
+  delete "logout" => "session#destroy"
+  get "logout" => "session#destroy"
+  get "history" => "session#history"
 
   get "visuals" => "site#visuals"
   get "exploration" => "site#exploration"
