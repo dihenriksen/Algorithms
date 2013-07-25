@@ -1,5 +1,11 @@
 Algorithms::Application.routes.draw do
 
+  get "user/show"
+  get "user/new"
+  get "user/create"
+  get "user/edit"
+  get "user/update"
+  get "user/destroy"
   get "privacy" => "site#privacy"
   get "terms" => "site#terms"
 

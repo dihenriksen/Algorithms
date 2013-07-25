@@ -1,11 +1,14 @@
 class SessionController < ApplicationController
 
+  # GET /login - sign in form
   def new
   end
 
+  # GET /history/:id - personal history on the site
   def history
   end
 
+  # POST /login - create a new user session
   def create
     if params[:password].blank?
       user = User.find_by(email: params[:email])
@@ -32,6 +35,8 @@ class SessionController < ApplicationController
     end
   end
 
+  # GET /logout - logs the user out
+  # DELETE /logout
   def destroy
   	session[:user_id] = nil
   	redirect_to login_url
