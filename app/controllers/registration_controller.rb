@@ -9,6 +9,8 @@ class RegistrationController < ApplicationController
     @registrant.expires_at = Time.now + 4.hours
 
   	if @registrant.save
+  		PasswordMailer.new_user_email(@registrant).deliver
+
   		redirect_to root_url, notice: "An email has been sent to complete your registration"
   	else
   		flash.now[:error] = "Unable to process. Please try again later."

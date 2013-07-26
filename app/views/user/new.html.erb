@@ -1,7 +1,39 @@
 <div class='row'>
-	<div class='large-4 columns'>
-		<h1>Enter your email address to register:</h1>
-		<%= render partial: "form" %>
-		<%= render partial: "awaiting_confirmation" %>
+	<div class='large-9 columns large-offset-2'>
+		<h1>Finish your registration</h1>
 	</div>
 </div>
+<div class='row'>
+	<div class='large-3 columns large-offset-2'>
+		<%= form_for @user, html: { autocomplete: :off } do |f| %>
+			<p>
+				<%= f.label :password %>
+				<%# Autofocus puts the cursor on this input on page load %>
+				<%= f.password_field :password, autfocus: true %>
+			</p>
+			<p>
+				<%= f.label :password_confirmation %>
+				<%= f.password_field :password_confirmation %>
+			<p>
+				<%# This hidden field is used to pass the password strength back to the server so we can be sure the password is strong enough %>
+				<input id='hidden-strength' type='hidden' name='strength' value='0'/>
+				<%# We start with the submit buttons disabled. %>
+				<%= f.submit 'Save password', id: 'save-password', class: 'button alert disabled'%>
+			</p>
+			<% end %>
+		</p>
+	</div>
+	<div class='large-7 columns'>
+		<%# This is the password strength meter. We will use the w-# class to change it using jQuery %>
+		<div class='progress large-6 strength-meter'>
+			<span id='strength-meter' class='meter w-0'></span>
+		</div>
+		<div>
+			Time to crack: <span id='time-to-crack'>instant</span>
+		</div>
+	</div>
+</div>
+
+<%# We link to the strength-meter here so that it is only loaded onto this page, not every page. %>
+
+<script type="text/javascript" src='/js/zxcvbn.js'></script>

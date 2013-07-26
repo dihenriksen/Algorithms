@@ -15,10 +15,10 @@ class PasswordMailer < ActionMailer::Base
     mail to: @user.email, subject: 'Change your credentials'
   end
 
-  def new_user_email(user)
-    @user = user
+  def new_user_email(registrant)
+    @registrant = registrant
 
-    mail to: @user.email, subject: 'Finish your registration with the Sort Kings'
+    mail to: @registrant.email, subject: 'Finish your registration with the Sort Kings'
   end
 
 end

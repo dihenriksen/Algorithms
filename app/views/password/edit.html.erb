@@ -9,11 +9,11 @@
 			<p>
 				<%= f.label :password %>
 				<%# Autofocus puts the cursor on this input on page load %>
-				<%= f.password :password, autfocus: true %>
+				<%= f.password_field :password, autfocus: true %>
 			</p>
 			<p>
 				<%= f.label :password_confirmation %>
-				<%= f.password :password_confirmation %>
+				<%= f.password_field :password_confirmation %>
 			<p>
 				<%# This hidden field is used to pass the password strength back to the server so we can be sure the password is strong enough %>
 				<input id='hidden-strength' type='hidden' name='strength' value='0'/>

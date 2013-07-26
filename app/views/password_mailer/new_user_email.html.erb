@@ -1,10 +1,10 @@
 <p>Welcome to the world of sorting algorithms!</p>
 
-<p>We are excited that you have decided to join our edgy, forward-thinking, progressive team. You can get started by following this link to log in for the first time, and set you password.</p>
+<p>We are excited that you have decided to join our edgy, forward-thinking, progressive team. You can get started by following this link to set your password, and log in for the first time.</p>
 
-<p><a href="http://localhost:3000/reset<%= @user.code %>">http://localhost:3000/reset<%= @user.code %></a></p>
+<p><a href="http://localhost:3000/register/<%= @registrant.code %>">http://localhost:3000/register/<%= @registrant.code %></a></p>
 
-<p>This link will expire at <%= @user.expires_at %>.</p>
+<p>This link will expire at <%= @registrant.expires_at %>.</p>
 
 <p>We are overjoyed to have you on board. Go forth and learn.</p>
 
