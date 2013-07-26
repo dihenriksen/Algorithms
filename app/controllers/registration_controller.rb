@@ -1,4 +1,7 @@
 class RegistrationController < ApplicationController
+  after_action :destroy_expired_registrants
+
+
   def new
   	@registrant = Registrant.new
   end
@@ -19,6 +22,10 @@ class RegistrationController < ApplicationController
   end
 
   private
+
+  def destroy_expired_registrants
+    Registrant.where('expires_at < ?', Time.now).destroy_all
+  end
 
   def registrant_params
   	params.require(:registrant).permit(:email)

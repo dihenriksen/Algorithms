@@ -46,7 +46,6 @@ $(function() {
       $('#password_matching').html('Passwords do not match').css('color', '#c60f13');
       $('#save-password').addClass('disabled').removeClass('success').addClass('alert');
     }
-
   });
 
   // Prevent the form from being submitted when the submit

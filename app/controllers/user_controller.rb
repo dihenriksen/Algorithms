@@ -21,13 +21,16 @@ class UserController < ApplicationController
     registrant = Registrant.find_by(code: params[:code])
     @user = User.new(user_params)
     @user.email = registrant.email
-
-    if @user.password == @user.password_confirmation
-      redirect_to root_url, notice: "passwords match"
-    end
+    session[:user_id] = @user.id
     # test to see if password == password_confirmation
     # yes: save user
     #   destroy registrant
+    if @user.password == @user.password_confirmation
+      @user.save
+      registrant.destroy
+      redirect_to history_path
+    end
+
     # no: display error message
     #   reload page
   end
@@ -45,10 +48,6 @@ class UserController < ApplicationController
   end
 
   private
-
-  def clear_expired_registrants
-
-  end
 
   def user_params
     params.require(:user).permit(
