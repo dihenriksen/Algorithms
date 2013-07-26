@@ -43,6 +43,13 @@ $(function() {
   // Prevent the form from being submitted when the submit
   // button is disabled (strength < MIN_STRENGTH)
 
+  $('#user_password_confirmation').on('keyup', function(evt) {
+    if (this.value === document.getElementById('user_password').value) {
+      $('#new_user').append('passwords match');
+      console.log(this.value);
+    }
+  });
+
 
   // Comment out this section to eliminate the restriction on password strength
   $('#new_user').on('submit', function() {

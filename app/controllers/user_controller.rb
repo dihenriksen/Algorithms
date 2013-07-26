@@ -17,6 +17,19 @@ class UserController < ApplicationController
 
   # POST /user/:code
   def create
+    # make new user from registrant
+    registrant = Registrant.find_by(code: params[:code])
+    @user = User.new(user_params)
+    @user.email = registrant.email
+
+    if @user.password == @user.password_confirmation
+      redirect_to root_url, notice: "passwords match"
+    end
+    # test to see if password == password_confirmation
+    # yes: save user
+    #   destroy registrant
+    # no: display error message
+    #   reload page
   end
 
   # GET /user/:id - display change password form for user <id>
@@ -30,4 +43,26 @@ class UserController < ApplicationController
   # DELETE /user/:id - destroy account for user <id>
   def destroy
   end
+
+  private
+
+  def clear_expired_registrants
+
+  end
+
+  def user_params
+    params.require(:user).permit(
+      :password,
+      :password_confirmation
+      )
+  end
+
 end
+
+
+
+
+
+
+
+

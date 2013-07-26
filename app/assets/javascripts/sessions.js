@@ -20,5 +20,5 @@ $(function() {
 
 		return false;
 	});
-	$('#password').attr('type','text');
+	$('#password').attr('type','password');
 });

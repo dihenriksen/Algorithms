@@ -5,7 +5,7 @@
 </div>
 <div class='row'>
 	<div class='large-3 columns large-offset-2'>
-		<%= form_for @user, html: { autocomplete: :off } do |f| %>
+		<%= form_for @user, url: {action: "create"}, html: { autocomplete: :off } do |f| %>
 			<p>
 				<%= f.label :password %>
 				<%# Autofocus puts the cursor on this input on page load %>
