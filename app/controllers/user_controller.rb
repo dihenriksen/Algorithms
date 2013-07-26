@@ -33,6 +33,8 @@ class UserController < ApplicationController
 
     # no: display error message
     #   reload page
+    # I think this is now unnecessary, since the submit button is disabled
+    # if the passwords do not match
   end
 
   # GET /user/:id - display change password form for user <id>
