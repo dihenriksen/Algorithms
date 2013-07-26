@@ -18,7 +18,7 @@
 				<%# This hidden field is used to pass the password strength back to the server so we can be sure the password is strong enough %>
 				<input id='hidden-strength' type='hidden' name='strength' value='0'/>
 				<%# We start with the submit buttons disabled. %>
-				<%= f.submit 'Save password', id: 'save-password', class: 'button alert'%>
+				<%= f.submit 'Save password', id: 'save-password', class: 'button alert disabled' %>
 			</p>
 			<% end %>
 		</p>

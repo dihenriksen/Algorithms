@@ -38,6 +38,15 @@ $(function() {
     } else {
       $('#save-password').addClass('disabled');
     }
+
+    if (this.value === document.getElementById('user_password_confirmation').value) {
+      $('#password_matching').html('Passwords match!').css('color', '#5da423');
+      $('#save-password').removeClass('disabled').removeClass('alert').addClass('success');
+    } else {
+      $('#password_matching').html('Passwords do not match').css('color', '#c60f13');
+      $('#save-password').addClass('disabled').removeClass('success').addClass('alert');
+    }
+
   });
 
   // Prevent the form from being submitted when the submit
@@ -46,9 +55,10 @@ $(function() {
   $('#user_password_confirmation').on('keyup', function(evt) {
     if (this.value === document.getElementById('user_password').value) {
       $('#password_matching').html('Passwords match!').css('color', '#5da423');
-      console.log(this.value);
+      $('#save-password').removeClass('disabled').removeClass('alert').addClass('success');
     } else {
       $('#password_matching').html('Passwords do not match').css('color', '#c60f13');
+      $('#save-password').addClass('disabled').removeClass('success').addClass('alert');
     }
   });
 
