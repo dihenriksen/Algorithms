@@ -5,7 +5,7 @@
 // and namespace it so we keep things out of the global namespace
 $(function() {
   // Set the minimum strength once and use it multiple times
-  var MIN_STRENGTH = 3;
+  var MIN_STRENGTH = 0;
 
   // Set a "keyup" event handler on the password field
   // Each time a key is pressed in that field, we'll calculate
@@ -42,6 +42,9 @@ $(function() {
 
   // Prevent the form from being submitted when the submit
   // button is disabled (strength < MIN_STRENGTH)
+
+
+  // Comment out this section to eliminate the restriction on password strength
   $('#new_user').on('submit', function() {
     if ($('#hidden-strength').val() < MIN_STRENGTH) {
       return false;
