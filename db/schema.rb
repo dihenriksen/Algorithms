@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20130725190639) do
     t.string   "salt"
     t.string   "fish"
     t.string   "arrays"
+    t.string   "code"
+    t.string   "expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_superuser", default: false

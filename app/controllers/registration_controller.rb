@@ -1,7 +1,6 @@
 class RegistrationController < ApplicationController
   after_action :destroy_expired_registrants
 
-
   def new
   	@registrant = Registrant.new
   end

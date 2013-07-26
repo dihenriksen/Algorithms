@@ -5,6 +5,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :salt
       t.string :fish
       t.string :arrays
+      t.string :code
+      t.string :expires_at
       t.timestamp :created_at
       t.timestamp :updated_at
       t.boolean :is_superuser, default: false

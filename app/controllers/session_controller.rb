@@ -20,9 +20,9 @@ class SessionController < ApplicationController
 
         # Send the password reset email with the coded link
         PasswordMailer.reset_email(user).deliver
+        redirect_to root_url, notice: "A password reset email has been sent to you"
     	end
 
-      render :new
     else
       user = User.authenticate(params[:email], params[:password])
 
