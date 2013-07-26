@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe PasswordMailer do
   describe "reset_password" do
-    let(:user) { User.new(email: 'to@example.org', name: 'Dan')}
+    let(:user) { User.new(email: 'to@example.org')}
     let(:mail) { PasswordMailer.reset_email(user) }
 
     it "renders the headers" do
@@ -13,10 +13,6 @@ describe PasswordMailer do
 
     it "renders the body" do
       mail.body.encoded.should include("localhost:3000/reset")
-    end
-
-    it "personalizes the email" do
-      mail.body.encoded.should include("Dan")
     end
 
   end

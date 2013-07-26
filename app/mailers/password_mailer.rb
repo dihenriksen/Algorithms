@@ -1,6 +1,6 @@
 class PasswordMailer < ActionMailer::Base
   # Set the default 'from' line for these emails
-  default from: "no-reply@awesomealgorithms.com"
+  default from: "no-reply@sortkings.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -18,7 +18,7 @@ class PasswordMailer < ActionMailer::Base
   def new_user_email(user)
     @user = user
 
-    mail to: @user.email, subject: 'Finish your registration with the Algorithm Kings'
+    mail to: @user.email, subject: 'Finish your registration with the Sort Kings'
   end
 
 end

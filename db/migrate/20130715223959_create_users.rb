@@ -4,8 +4,10 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :salt
       t.string :fish
-      t.string :code
-      t.timestamp :expires_at
+      t.string :arrays
+      t.timestamp :created_at
+      t.timestamp :updated_at
+      t.boolean :is_superuser, default: false
 
       t.timestamps
     end

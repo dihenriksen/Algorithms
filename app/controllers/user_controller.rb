@@ -4,11 +4,18 @@ class UserController < ApplicationController
   def show
   end
 
-  # GET /user/new - display registration form for new users
+  # GET /register/:code
   def new
+    @registrant = Registrant.find_by(code: params[:code])
+
+    if @registrant
+      @user = User.new(email: @registrant.email)
+    else
+      redirect_to register_path, error: "Do-over"
+    end
   end
 
-  # POST
+  # POST /user/:code
   def create
   end
 

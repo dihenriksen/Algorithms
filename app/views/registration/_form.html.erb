@@ -1,0 +1,9 @@
+<%= form_for @registrant, url: register_path, html: { autocomplete: :off } do |f| %>
+	<p>
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+	</p>
+	<p>
+		<%= f.submit "Register", class: "button" %>
+	</p>
+<% end %>
