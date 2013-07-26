@@ -45,8 +45,10 @@ $(function() {
 
   $('#user_password_confirmation').on('keyup', function(evt) {
     if (this.value === document.getElementById('user_password').value) {
-      $('#new_user').append('passwords match');
+      $('#password_matching').html('Passwords match!').css('color', '#5da423');
       console.log(this.value);
+    } else {
+      $('#password_matching').html('Passwords do not match').css('color', '#c60f13');
     }
   });
 
