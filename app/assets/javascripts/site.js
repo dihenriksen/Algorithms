@@ -87,73 +87,109 @@ function mergesort(array, count) {
 	}
 }
 
-function mergesort_natural(array) {
+function mergesort_natural(array, count) {
+	var arr = array.slice();
 	if (array.length === 1) {
-		return array;
+		count++;
+		hash = {
+			arr: arr,
+			count: count
+		}
+		return hash;
 	} else {
-		var arr = array.slice();
 		var new_array_element = $('p').first().clone().html('');
 		var naturalized = [[]];
 		console.log(naturalized);
 		var j = 0;
 		var current = 0;
+		count = count + 3;
 
 		// test_array = [4,6,5,8,2,3,9,1,0,7]
 
 		while (arr.length) {
+			count++;
 			current = arr[0];
 			naturalized[j].push(arr.shift());
+			count++;
 			if (arr[0] < current) {
 				j++;
 				naturalized[j] = [];
+				count++;
 			}
 		}
 		console.log(naturalized);
 
 		while (naturalized.length > 1) {
-			naturalized[0] = merge(naturalized[0], naturalized[1], '#mergesort_natural');
+			count++;
+			merged_array = merge(naturalized[0], naturalized[1], '#mergesort_natural', count);
+			naturalized[0] = merged_array.arr
 			naturalized.splice(1,1);
 			console.log(naturalized[0]);
 		}
 	}
 	arr = naturalized[0];
-	return arr;
+
+	hash = {
+		arr: arr,
+		count: count
+	}
+	return hash;
 }
 
-function quicksort(array) {
+function quicksort(array, count) {
 	var arr = array.slice();
 	var new_array_element = $('p').first().clone().html('');
 
+	hash = {
+		arr: arr,
+		count: count
+	}
+
 	if (arr.length === 1 || arr.length === 0) {
-		return arr;
+		count++;
+		hash = {
+			arr: arr,
+			count: count
+		}
+		return hash;
 	} else {
 		var pivot = choose_pivot([arr[0],arr[Math.floor(arr.length/2)],arr[arr.length - 1]]);
-		// console.log('pivot:' + pivot);
+		count++;
 
 		var end_index = arr.length;
 
 		for (i = 0; i < end_index; i++) {
+			count++;
 			if (i < arr.indexOf(pivot) && arr[i] > pivot) {
 				arr.push(arr.splice(i,1)[0]);
 				end_index--;
 				i--;
+				count++;
 			} else if (i > arr.indexOf(pivot) && arr[i] < pivot) {
 				arr.unshift(arr.splice(i,1)[0]);
+				count++;
 			}
 		}
 
 		var left = arr.slice(0,arr.indexOf(pivot));
 		var right = arr.slice(arr.indexOf(pivot) + 1);
+		count = count + 2;
 
 		new_array_element = new_array_element.html('[' + left + '] [' + pivot + '] [' + right + ']');
 		$('#quicksort').append(new_array_element);
 
-		left = quicksort(left);
-		right = quicksort(right);
+		left = quicksort(left, count).arr;
+		right = quicksort(right, count).arr;
 
 		var arr = left.concat([pivot]).concat(right);
 		$('#quicksort').append('<p>[' + arr + ']</p>');
-		return arr;
+
+		hash = {
+			arr: arr,
+			count: count
+		}
+
+		return hash;
 	}
 }
 
@@ -163,6 +199,7 @@ function merge(left, right, calling_function, count) {
 	var new_array_element = $('p').first().clone().html('');
 
 	while (left.length && right.length) {
+		count++;
 		if (left[0] < right[0]) {
 			arr.push(left.shift());
 			count++;
@@ -173,11 +210,13 @@ function merge(left, right, calling_function, count) {
 	}
 
 	while(left.length) {
+		count++;
 		arr.push(left.shift());
 		count++;
 	}
 
 	while(right.length) {
+		count++;
 		arr.push(right.shift());
 		count++;
 	}
@@ -236,11 +275,10 @@ function sorts(array) {
 
 	$('p').html('Start: [' + array + ']');
 
-	bubble_array = bubblesort(array).count;
-	merge_array = mergesort(array, 0).count;
-	console.log('Merge count:' + merge_array);
-	quicksort_array = quicksort(array).arr;
-	// mergesort_natural_array = mergesort_natural(array).arr;
+	bubble_count = bubblesort(array).count;
+	merge_count = mergesort(array, 0).count;
+	quicksort_count = quicksort(array, 0).count;
+	merge_natural_count = mergesort_natural(array, 0).count;
 
 	return false;
 }
@@ -262,8 +300,10 @@ $(document).ready(function() {
 			url: "sorted_arrays/create",
 			data: {
 				raw_array: JSON.stringify(array),
-				numStepsBubble: bubble_array,
-				numStepsMerge: merge_array
+				numStepsBubble: bubble_count,
+				numStepsMerge: merge_count,
+				numStepsMergeNat: merge_natural_count,
+				numStepsQuick: quicksort_count
 			},
 			success: function(){ console.log("POST SENT"); },
 			error: function(err){console.log(err);}

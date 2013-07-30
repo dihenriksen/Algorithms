@@ -5,7 +5,9 @@ class SortedArraysController < ApplicationController
   	@sorted_array = SortedArray.new( params.permit(
   		:raw_array,
   		:numStepsBubble,
-  		:numStepsMerge)
+  		:numStepsMerge,
+  		:numStepsMergeNat,
+  		:numStepsQuick)
   	)
   	# This will also work, in lieu of the above:
   	# @sorted_array[:raw_array] = params[:raw_array]
