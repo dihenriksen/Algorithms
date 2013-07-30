@@ -8,21 +8,26 @@ function bubblesort(array) {
 	var sorted = false;
 	var new_array_element = $('p').first().clone().html('');
 	var array_for_display = [];
+	var count = 0;
 
 	while (!sorted) {
 		var end_index = arr.length;
 		var for_testing_if_any_swaps = swaps;
 		for (i = 0; i < end_index; i++) {
+			count++;
 			if (arr[i] > arr[i+1]) {
 				swap(arr, i, i+1);
 				swaps++;
+				count = count + 3;
 			}
 		}
 		if (for_testing_if_any_swaps === swaps) {
 			sorted = true;
+			count++;
 		}
 
 		end_index--;
+		count++;
 
 	// array_for_display = new_array_element.html(array);
 	// console.log(array_for_display);
@@ -34,7 +39,15 @@ function bubblesort(array) {
 	}
 
 	$('#bubblesort').append('<p>' + swaps + ' swaps</p>');
-	return arr;
+
+	hash = {
+		arr: arr,
+		count: count
+	}
+
+	console.log(hash);
+
+	return hash;
 }
 
 function mergesort(array) {
@@ -200,10 +213,11 @@ function sorts(array) {
 
 	$('p').html('Start: [' + array + ']');
 
-	bubble_array = bubblesort(array);
-	merge_array = mergesort(array);
-	quicksort_array = quicksort(array);
-	mergesort_natural_array = mergesort_natural(array);
+	bubble_array = bubblesort(array).count;
+	console.log(bubble_array);
+	merge_array = mergesort(array).arr;
+	quicksort_array = quicksort(array).arr;
+	mergesort_natural_array = mergesort_natural(array).arr;
 
 	return false;
 }
@@ -219,6 +233,18 @@ $(document).ready(function() {
 
 	$('#sort_button').click(function() {
 		sorts(array);
+		console.log(JSON.stringify(array));
+		$.ajax ({
+			type: "POST",
+			url: "sorted_arrays/create",
+			data: {
+				raw_array: JSON.stringify(array),
+				numStepsBubble: bubble_array,
+			},
+			success: function(){ console.log("POST SENT");},
+			error: function(err){console.log(err);}
+		})
+
 		return false;
 	});
 

@@ -1,5 +1,6 @@
 Algorithms::Application.routes.draw do
 
+  post "sorted_arrays/create" => "sorted_arrays#create"
   get "register" => "registration#new"
   post "register" => "registration#create"
 

@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+	has_and_belongs_to_many :sorted_arrays
+
 	before_save :encrypt_password
 
 	attr_accessor :password, :password_confirmation
