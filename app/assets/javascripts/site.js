@@ -50,26 +50,39 @@ function bubblesort(array) {
 	return hash;
 }
 
-function mergesort(array) {
+function mergesort(array, count) {
 	var arr = array.slice();
 	var new_array_element = $('p').first().clone().html('');
 
+	hash = {
+		arr: arr,
+		count: count
+	}
+
 	if (arr.length === 1) {
-		return arr;
+		count++;
+		hash = {
+			arr: arr,
+			count: count
+		}
+		return hash;
 	} else {
 		var mid = Math.floor(arr.length/2);
 		var left = arr.slice(0, mid);
 		var right = arr.slice(mid);
+		count = count + 3;
 
 		// Put steps into json data
 
-		left = mergesort(left);
-		right = mergesort(right);
+		left = mergesort(left).arr;
+		right = mergesort(right).arr;
 
 		new_array_element = new_array_element.html('[' + left + '] [' + right + ']');
 		$('#mergesort').append(new_array_element);
 
-		return merge(left, right, '#mergesort');
+		hash = merge(left, right, '#mergesort', count);
+
+		return hash;
 	}
 }
 
@@ -143,7 +156,7 @@ function quicksort(array) {
 	}
 }
 
-function merge(left, right, calling_function) {
+function merge(left, right, calling_function, count) {
 	// merges two arrays, sorting as it goes
 	var arr = [];
 	var new_array_element = $('p').first().clone().html('');
@@ -151,23 +164,32 @@ function merge(left, right, calling_function) {
 	while (left.length && right.length) {
 		if (left[0] < right[0]) {
 			arr.push(left.shift());
+			count++;
 		} else {
 			arr.push(right.shift());
+			count++;
 		}
 	}
 
 	while(left.length) {
 		arr.push(left.shift());
+		count++;
 	}
 
 	while(right.length) {
 		arr.push(right.shift());
+		count++;
 	}
 
 	new_array_element = new_array_element.html('[' + arr + ']');
 	$(calling_function).append(new_array_element);
 
-	return arr;
+	hash = {
+		arr: arr,
+		count: count
+	}
+
+	return hash;
 }
 
 function swap(arr, x, y) {
@@ -214,10 +236,10 @@ function sorts(array) {
 	$('p').html('Start: [' + array + ']');
 
 	bubble_array = bubblesort(array).count;
-	console.log(bubble_array);
-	merge_array = mergesort(array).arr;
+	merge_array = mergesort(array, 0).count;
+	console.log(merge_array);
 	quicksort_array = quicksort(array).arr;
-	mergesort_natural_array = mergesort_natural(array).arr;
+	// mergesort_natural_array = mergesort_natural(array).arr;
 
 	return false;
 }
