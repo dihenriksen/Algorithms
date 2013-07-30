@@ -76,6 +76,7 @@ function mergesort(array, count) {
 
 		left = mergesort(left).arr;
 		right = mergesort(right).arr;
+		count = count + 2;
 
 		new_array_element = new_array_element.html('[' + left + '] [' + right + ']');
 		$('#mergesort').append(new_array_element);
@@ -237,7 +238,7 @@ function sorts(array) {
 
 	bubble_array = bubblesort(array).count;
 	merge_array = mergesort(array, 0).count;
-	console.log(merge_array);
+	console.log('Merge count:' + merge_array);
 	quicksort_array = quicksort(array).arr;
 	// mergesort_natural_array = mergesort_natural(array).arr;
 
@@ -262,8 +263,9 @@ $(document).ready(function() {
 			data: {
 				raw_array: JSON.stringify(array),
 				numStepsBubble: bubble_array,
+				numStepsMerge: merge_array
 			},
-			success: function(){ console.log("POST SENT");},
+			success: function(){ console.log("POST SENT"); },
 			error: function(err){console.log(err);}
 		})
 
