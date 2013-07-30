@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/*/
 
+.clearfix:after {
+  content: " "; /* Older browser do not support empty content */
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
 $margin: 20px;
 
 #random_array {
@@ -24,6 +32,20 @@ $margin: 20px;
 	}
 }
 
+#bubble_colors {
+	@include alg-box;
+	.colors_container {
+		margin-bottom: 3px;
+	}
+	.color_div {
+		float: left;
+		width: 10px;
+		height: 15px;
+		margin-right: 3px;
+		// background-color: rgb(10, 55, 200);
+	}
+}
+
 #mergesort_natural {
 	@include alg-box;
 }
@@ -33,7 +55,8 @@ $margin: 20px;
 }
 
 #bubblesort {
-	@include alg-box;}
+	@include alg-box;
+}
 
 #quicksort {
 	@include alg-box;

@@ -19,6 +19,8 @@ function bubblesort(array) {
 				swap(arr, i, i+1);
 				swaps++;
 				count = count + 3;
+						render_colors(arr);
+
 			}
 		}
 		if (for_testing_if_any_swaps === swaps) {
@@ -33,8 +35,8 @@ function bubblesort(array) {
 	// console.log(array_for_display);
 	// $('.bubblesort').append(array_for_display);
 
-	new_array_element = $('p').first().clone().html('[' + arr + ']');
-	$('#bubblesort').append(new_array_element);
+		new_array_element = $('p').first().clone().html('[' + arr + ']');
+		$('#bubblesort').append(new_array_element);
 
 	}
 
@@ -257,7 +259,8 @@ function randomarray() {
 	var length = Math.floor(Math.random() * max_length);
 
 	for (i = 0; i < length; i++) {
-		arr[i] = Math.floor(Math.random() * 200 - 100);
+		arr[i] = Math.floor(Math.random() * 255);
+		// arr[i] = Math.floor(Math.random() * 200 - 100);
 	}
 	return arr;
 }
@@ -272,6 +275,7 @@ function sorts(array) {
 	$('#quicksort').append(start_tag);
 	$('#mergesort_natural').children('p').remove();
 	$('#mergesort_natural').append(start_tag);
+	$('#bubble_colors').children().not('h3').remove();
 
 	$('p').html('Start: [' + array + ']');
 
@@ -280,7 +284,23 @@ function sorts(array) {
 	quicksort_count = quicksort(array, 0).count;
 	merge_natural_count = mergesort_natural(array, 0).count;
 
+	// render_colors(array);
+
 	return false;
+}
+
+function render_colors(array) {
+	var new_colors_container = "<div class = 'colors_container clearfix'><div class='color_div'></div></div>"
+	$('#bubble_colors').append(new_colors_container);
+
+	for (i = 0; i < array.length; i++) {
+		var color_element = $('.color_div').first().clone();
+		$('#bubble_colors').find($('.colors_container')).last().find($('.color_div')).last().after(color_element);
+		color_string = "rgb(" + array[i] + ", 100, 100)";
+		$('#bubble_colors').find($('.color_div')).last().css({
+			"background-color" : color_string
+			});
+	}
 }
 
 $(document).ready(function() {
