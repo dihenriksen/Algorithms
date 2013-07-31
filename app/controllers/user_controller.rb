@@ -21,12 +21,12 @@ class UserController < ApplicationController
     registrant = Registrant.find_by(code: params[:code])
     @user = User.new(user_params)
     @user.email = registrant.email
-    session[:user_id] = @user.id
     # test to see if password == password_confirmation
     # yes: save user
     #   destroy registrant
     if @user.password == @user.password_confirmation
       @user.save
+      session[:user_id] = @user.id
       registrant.destroy
       redirect_to history_path
     end
