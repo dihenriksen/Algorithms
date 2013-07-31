@@ -16,6 +16,7 @@ function bubblesort(array) {
 		var end_index = arr.length;
 		var for_testing_if_any_swaps = swaps;
 		for (i = 0; i < end_index; i++) {
+			console.log(i);
 			count++;
 			if (arr[i] > arr[i+1]) {
 				swap(arr, i, i+1);
@@ -285,14 +286,14 @@ function render_colors(array, color_set) {
 	var new_colors_container = "<div class = 'colors_container clearfix'><div class='color_div'></div></div>"
 	$('#bubble_colors').append(new_colors_container);
 
-	for (i = 0; i < array.length; i++) {
+	for (j = 0; j < array.length; j++) {
 		var color_element = $('.color_div').first().clone();
 		if (color_set[0] === "this") {
-			var color_string = "rgb(" + array[i] + ", " + color_set[1] + ", " + color_set[2] + ")";
+			var color_string = "rgb(" + array[j] + ", " + color_set[1] + ", " + color_set[2] + ")";
 		} else if (color_set[1] === "this") {
-			var color_string = "rgb(" + color_set[0] + ", " + array[i] + ", " + color_set[2] + ")";
+			var color_string = "rgb(" + color_set[0] + ", " + array[j] + ", " + color_set[2] + ")";
 		} else {
-			var color_string = "rgb(" + color_set[0] + ", " + color_set[1] + ", " + array[i] + ")";
+			var color_string = "rgb(" + color_set[0] + ", " + color_set[1] + ", " + array[j] + ")";
 		}
 
 		$('#bubble_colors').find($('.colors_container')).last().find($('.color_div')).last().after(color_element);
@@ -300,6 +301,7 @@ function render_colors(array, color_set) {
 			"background-color" : color_string
 			});
 	}
+	return false;
 }
 
 function color_setter(array) {

@@ -1,4 +1,5 @@
 class SessionController < ApplicationController
+  before_action :is_authenticated, only: [ :history ]
 
   # GET /login - sign in form
   def new
@@ -7,6 +8,8 @@ class SessionController < ApplicationController
   # GET /history/:id - personal history on the site
   def history
     # How do I make a specific person's history page load?
+    current_user # Calls the current_user method in application_controller
+                # which returns @current_user
   end
 
   # POST /login - create a new user session
