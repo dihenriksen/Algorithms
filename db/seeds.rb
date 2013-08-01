@@ -23,4 +23,4 @@ User.create([
 		password: '123',
 		password_confirmation: '123'
 	},
-	])
+])

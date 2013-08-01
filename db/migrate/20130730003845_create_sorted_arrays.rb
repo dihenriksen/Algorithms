@@ -1,6 +1,7 @@
 class CreateSortedArrays < ActiveRecord::Migration
   def change
     create_table :sorted_arrays do |t|
+      t.references :user
       t.string :raw_array
       t.integer :numStepsBubble
       t.integer :numStepsMerge

@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20130730003845) do
   end
 
   create_table "sorted_arrays", force: true do |t|
+    t.integer  "user_id"
     t.string   "raw_array"
     t.integer  "numStepsBubble"
     t.integer  "numStepsMerge"

@@ -1,5 +1,11 @@
-<h1>Extensive personal history coming soon.</h1>
+<h1>Welcome <%= @current_user.email %>!</h1>
 <p>
-	<%= session[:user_id] %>
-	<%= session %>
 </p>
+<h5>Here are all the arrays you have tested:</h5>
+<ul>
+<% @current_user.sorted_arrays.each do |a| %>
+<li>
+<%= a.raw_array %>
+<% end %>
+</li>
+</ul>

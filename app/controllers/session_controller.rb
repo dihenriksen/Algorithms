@@ -8,7 +8,7 @@ class SessionController < ApplicationController
   # GET /history/:id - personal history on the site
   def history
     # How do I make a specific person's history page load?
-    current_user # Calls the current_user method in application_controller
+    current_user# Calls the current_user method in application_controller
                 # which returns @current_user
   end
 
